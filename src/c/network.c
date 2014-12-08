@@ -101,3 +101,26 @@ void set_promiscuous_mode(int sock, char *interface)
 
     free(&ifr);
 }
+
+/**
+ * Turn off a network interface's promiscuous mode.
+ *
+ * @param sock      socket
+ * @param interface interface name
+ */
+void unset_promiscuous_mode(int sock, char *interface)
+{
+    struct ifreq ifr = *get_network_interface_flags(sock, interface);
+
+    //set the old flags + IFF_PROMISC
+    ifr.ifr_flags &= ~IFF_PROMISC;
+
+    //set flags on the socket
+    if(ioctl(sock, SIOCSIFFLAGS, &ifr) == -1)
+    {
+        perror("Error: Couldn't set flag IFF_PROMISC.\n");
+        exit(0);
+    }
+
+    free(&ifr);
+}
