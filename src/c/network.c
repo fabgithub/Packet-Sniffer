@@ -52,3 +52,23 @@ int create_raw_socket()
 
     return raw_socket;
 }
+
+ifreq* get_network_interface_flags(char *interface)
+{
+    struct ifreq ifr;
+
+    //initialize the ifreq structure
+    memset(&ifr, 0, sizeof(struct ifreq));
+
+    //set the interface to use
+    strcpy(ifr.ifr_name, interface);
+
+    //get the interface's current flags
+    if(ioctl(raw_socket, SIOCGIFFLAGS, &ifr) == -1)
+    {
+        perror("Error: Couldn't retrieve flags from the device.\n");
+        exit(0);
+    }
+
+    return *ifr;
+}
