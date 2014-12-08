@@ -53,6 +53,12 @@ int create_raw_socket()
     return raw_socket;
 }
 
+/**
+ * Fetches a network interface's current flags and returns an ifreq structure (from `net/if.h`).
+ *
+ * @param  interface interface to get the flags for
+ * @return an ifreq structure with flags set.
+ */
 ifreq* get_network_interface_flags(char *interface)
 {
     struct ifreq ifr;
