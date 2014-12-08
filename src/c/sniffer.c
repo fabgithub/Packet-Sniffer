@@ -1,5 +1,7 @@
-#include <stdio.h> //for printf(), perror()
-#include <signal.h> //for signal()
+#include "includes.h"
+
+/* Interfaces */
+void signal_int();
 
 /**
  * The main entry point of the packet sniffer.

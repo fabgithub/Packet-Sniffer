@@ -59,9 +59,9 @@ int create_raw_socket()
  * @param  interface interface to get the flags for
  * @return an ifreq structure with flags set.
  */
-ifreq* get_network_interface_flags(char *interface)
+struct ifreq* get_network_interface_flags(int sock, char *interface)
 {
-    struct ifreq ifr;
+    static struct ifreq ifr;
 
     //initialize the ifreq structure
     memset(&ifr, 0, sizeof(struct ifreq));
@@ -70,11 +70,34 @@ ifreq* get_network_interface_flags(char *interface)
     strcpy(ifr.ifr_name, interface);
 
     //get the interface's current flags
-    if(ioctl(raw_socket, SIOCGIFFLAGS, &ifr) == -1)
+    if(ioctl(sock, SIOCGIFFLAGS, &ifr) == -1)
     {
         perror("Error: Couldn't retrieve flags from the device.\n");
         exit(0);
     }
 
-    return *ifr;
+    return &ifr;
+}
+
+/**
+ * Turn on a network interface's promiscuous mode.
+ *
+ * @param sock socket
+ * @param interface interface name
+ */
+void set_promiscuous_mode(int sock, char *interface)
+{
+    struct ifreq ifr = *get_network_interface_flags(sock, interface);
+
+    //set the old flags + IFF_PROMISC
+    ifr.ifr_flags |= IFF_PROMISC;
+
+    //set flags on the socket
+    if(ioctl(sock, SIOCSIFFLAGS, &ifr) == -1)
+    {
+        perror("Error: Couldn't set flag IFF_PROMISC.\n");
+        exit(0);
+    }
+
+    free(&ifr);
 }
