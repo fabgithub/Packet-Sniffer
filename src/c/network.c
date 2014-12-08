@@ -37,7 +37,7 @@ void print_network_interfaces()
 /**
  * Creates a raw socket and returns a descriptor to it.
  *
- * @return raw socket descripter
+ * @return raw socket descriptor
  */
 int create_raw_socket()
 {
@@ -51,6 +51,16 @@ int create_raw_socket()
     }
 
     return raw_socket;
+}
+
+/**
+ * Creates a raw socket and configures it to listen in promiscuous mode.
+ *
+ * @return raw socket descriptor
+ */
+int create_raw_promiscuous_socket()
+{
+
 }
 
 /**
