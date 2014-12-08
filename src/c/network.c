@@ -58,9 +58,15 @@ int create_raw_socket()
  *
  * @return raw socket descriptor
  */
-int create_raw_promiscuous_socket()
+int create_raw_promiscuous_socket(char *interface)
 {
+    //create a raw socket
+    int socket = create_raw_socket();
 
+    //set promiscuous mode on interface
+    set_promiscuous_mode(socket, interface);
+
+    return socket;
 }
 
 /**
