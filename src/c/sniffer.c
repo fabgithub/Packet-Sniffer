@@ -12,6 +12,7 @@ void signal_int();
  */
 int main(int argc, char **argv)
 {
+    //TODO: need to maintain socket descriptor + interface name globally (for later cleanup).
 
     //register signal handler for CTRL+C
     signal(SIGINT, signal_int);
