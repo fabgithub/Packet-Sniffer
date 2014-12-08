@@ -33,3 +33,22 @@ void print_network_interfaces()
 
     freeifaddrs(ifaddr);
 }
+
+/**
+ * Creates a raw socket and returns a descriptor to it.
+ *
+ * @return raw socket descripter
+ */
+int create_raw_socket()
+{
+    int raw_socket;
+
+    //create a raw socket
+    if((raw_socket = socket(PF_PACKET, SOCK_RAW, htons(ETH_P_ALL))) < 1)
+    {
+        perror("Error: Couldn't open socket.\n");
+        exit(0);
+    }
+
+    return raw_socket;
+}
