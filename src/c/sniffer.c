@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include <stdio.h> //for printf(), perror()
+#include <signal.h> //for signal()
 
 /**
  * The main entry point of the packet sniffer.
@@ -8,6 +9,18 @@
  * @return
  */
 int main(int argc, char **argv)
+{
+
+    //register signal handler for CTRL+C
+    signal(SIGINT, signal_int);
+}
+
+/**
+ * Does some clean up (example: turn off the interface's promiscuous mode).
+ *
+ * Invoked when CTRL+C is pressed.
+ */
+void signal_int()
 {
 
 }
