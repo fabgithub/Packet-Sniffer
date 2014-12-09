@@ -17,6 +17,7 @@
 
 #include "includes.h"
 #include "network.h"
+#include "packet.h"
 
 /* Interfaces */
 void on_exit_cleanup();
@@ -64,6 +65,9 @@ int main(int argc, char **argv)
             printf("%s\n", "Error: Recvfrom failed to get packets!");
             exit(1);
         }
+
+        //process the packet in the received data
+        process_packet(buffer, data_size);
     }
 }
 
