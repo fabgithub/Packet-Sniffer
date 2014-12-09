@@ -19,7 +19,7 @@
 #include "network.h"
 
 /* Interfaces */
-void signal_int();
+void on_exit_cleanup();
 
 int socket; //the descriptor of the raw socket in use
 char interface[16]; //name of the interface in use
@@ -49,8 +49,8 @@ int main(int argc, char **argv)
     socket = create_raw_promiscuous_socket(interface);
 
     //make sure 'promiscuous mode' will get disabled upon program termination
-    signal(SIGINT, signal_int); //register signal handler for CTRL+C
-    atexit(signal_int);
+    signal(SIGINT, on_exit_cleanup); //register signal handler for CTRL+C
+    atexit(on_exit_cleanup);
 
     printf("%s: %s ..\n", "Now monitoring all packets on the interface", interface);
 
@@ -68,11 +68,11 @@ int main(int argc, char **argv)
 }
 
 /**
- * Does some clean up (example: turn off the interface's promiscuous mode).
+ * Does some clean up.
  *
- * Invoked when CTRL+C is pressed.
+ * (example: turn off the interface's promiscuous mode).
  */
-void signal_int()
+void on_exit_cleanup()
 {
     //turn off the interface's promiscuous mode
     unset_promiscuous_mode(socket, interface);
