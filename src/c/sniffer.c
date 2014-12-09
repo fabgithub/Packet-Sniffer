@@ -33,8 +33,8 @@ char interface[16]; //name of the interface in use
  */
 int main(int argc, char **argv)
 {
-    struct sockaddr saddr;
-    int saddr_size, data_size;
+    //size of the data read from the raw socket
+    int data_size;
 
     //buffer to scan into
     unsigned char *buffer = (unsigned char *) malloc(65536);
@@ -51,6 +51,8 @@ int main(int argc, char **argv)
     //make sure 'promiscuous mode' will get disabled upon program termination
     signal(SIGINT, signal_int); //register signal handler for CTRL+C
     atexit(signal_int);
+
+    printf("%s: %s ..\n", "Now monitoring all packets on the interface", interface);
 }
 
 /**
