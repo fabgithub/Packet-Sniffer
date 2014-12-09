@@ -3,6 +3,9 @@
 /* Interfaces */
 void signal_int();
 
+int socket; //the descriptor of the raw socket in use
+char interface[16]; //name of the interface in use
+
 /**
  * The main entry point of the packet sniffer.
  *
@@ -12,7 +15,8 @@ void signal_int();
  */
 int main(int argc, char **argv)
 {
-    //TODO: need to maintain socket descriptor + interface name globally (for later cleanup).
+    struct sockaddr saddr;
+    int saddr_size, data_size;
 
     //register signal handler for CTRL+C
     signal(SIGINT, signal_int);
