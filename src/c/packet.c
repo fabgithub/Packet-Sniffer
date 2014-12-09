@@ -11,5 +11,6 @@
  */
 void process_packet(unsigned char* buffer, int buffer_size)
 {
-
+    //process link layer and see what protocol is being used.
+    struct ethhdr *eth = (struct ethhdr *) buffer;
 }
