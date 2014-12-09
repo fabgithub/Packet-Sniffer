@@ -1,3 +1,20 @@
+//--------------------------------------------------------------
+//
+//      This program lets a user sniff network packets using the
+//      Linux PF_PACKET protocol family.
+//
+//      Since we're using raw sockets here, the program needs
+//      to be invoked as root.
+//
+//          $ gcc *.c -o psniff
+//          $ chmod a+s psniff
+//          $ sudo ./psniff
+//
+//      To terminate the program's execution, hit the <CONTROL-C>
+//      key-combo.
+//
+//--------------------------------------------------------------
+
 #include "includes.h"
 #include "network.h"
 
@@ -31,8 +48,8 @@ int main(int argc, char **argv)
     //get a raw socket in a promiscuous mode
     socket = create_raw_promiscuous_socket(interface);
 
-    //register signal handler for CTRL+C
-    signal(SIGINT, signal_int);
+    //make sure 'promiscuous mode' will get disabled upon program termination
+    signal(SIGINT, signal_int); //register signal handler for CTRL+C
     atexit(signal_int);
 }
 
