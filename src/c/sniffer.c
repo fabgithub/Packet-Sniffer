@@ -53,6 +53,18 @@ int main(int argc, char **argv)
     atexit(signal_int);
 
     printf("%s: %s ..\n", "Now monitoring all packets on the interface", interface);
+
+    //infinite loop to read
+    while(1)
+    {
+        data_size = recvfrom(socket, buffer, 65536, 0, NULL, NULL);
+
+        if(data_size < 0)
+        {
+            printf("%s\n", "Error: Recvfrom failed to get packets!");
+            exit(1);
+        }
+    }
 }
 
 /**
