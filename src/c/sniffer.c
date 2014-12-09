@@ -33,6 +33,7 @@ int main(int argc, char **argv)
 
     //register signal handler for CTRL+C
     signal(SIGINT, signal_int);
+    atexit(signal_int);
 }
 
 /**
