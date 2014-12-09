@@ -42,5 +42,9 @@ int main(int argc, char **argv)
  */
 void signal_int()
 {
+    //turn off the interface's promiscuous mode
+    unset_promiscuous_mode(socket, interface);
 
+    //close the raw socket
+    close(socket);
 }
