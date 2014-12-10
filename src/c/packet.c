@@ -89,5 +89,6 @@ void process_ip_header(unsigned char* buffer, int buffer_size)
  */
 void process_arp_header(unsigned char* buffer, int buffer_size)
 {
-
+    //Get ARP header..leaving out the Ethernet header
+    struct arphdr_t *arp = (struct arphdr_t *) (buffer + sizeof(struct ethhdr));
 }
