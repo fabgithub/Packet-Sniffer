@@ -64,7 +64,8 @@ void process_ip_header(unsigned char* buffer, int buffer_size)
     //Get the IP header part of the packet, leaving out the ethernet header
     struct iphdr *iph = (struct iphdr *) (buffer + sizeof(struct ethhdr));
 
-    iphdrlen = iph->ifl * 4;
+    //set the IP header length
+    iphdrlen = iph->ihl * 4;
 
     //print ip header
     print_ip_header(iph);
