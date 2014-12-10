@@ -59,7 +59,7 @@ void print_packet_data(unsigned char* buffer, int buffer_size)
 {
     unsigned int i, j;
 
-    print(0, "%s\n\n", "+--------< Hex Data");
+    print(0, "%s\n|\n", "+--------< Hex Data");
 
     for(i = 0; i < buffer_size + ((buffer_size % HEXDUMP_COLUMNS) ? (HEXDUMP_COLUMNS - buffer_size % HEXDUMP_COLUMNS) : 0); i++)
     {
