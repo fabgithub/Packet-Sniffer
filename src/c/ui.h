@@ -1,6 +1,8 @@
 #ifndef UI_H
 #define UI_H
 
+#define HEXDUMP_COLUMNS 8
+
 #include "includes.h"
 #include "packet.h"
 

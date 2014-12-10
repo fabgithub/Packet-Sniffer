@@ -37,12 +37,54 @@ void print(FILE *file, const char *format, ...)
 /**
  * Dumps raw memory in Hex bytes and human readable text.
  *
+ * Function borrowed from http://grapsus.net/blog/post/Hexadecimal-dump-in-C
+ *
  * @param buffer      the buffer to print out
  * @param buffer_size length of the buffer
  */
 void print_packet_data(unsigned char* buffer, int buffer_size)
 {
+    unsigned int i, j;
 
+    for(i = 0; i < buffer_size + ((buffer_size % HEXDUMP_COLUMNS) ? (HEXDUMP_COLUMNS - buffer_size % HEXDUMP_COLUMNS) : 0); i++)
+    {
+        /* print offset */
+        if(i % HEXDUMP_COLUMNS == 0)
+        {
+            print(0, "0x%06x: ", i);
+        }
+
+        /* print hex data */
+        if(i < buffer_size)
+        {
+            print(0, "%02x ", 0xFF & ((char*) buffer)[i]);
+        }
+        else /* end of block, just aligning for ASCII dump */
+        {
+            print(0, "   ");
+        }
+
+        /* print ASCII dump */
+        if(i % HEXDUMP_COLUMNS == (HEXDUMP_COLUMNS - 1))
+        {
+            for(j = i - (HEXDUMP_COLUMNS - 1); j <= i; j++)
+            {
+                if(j >= buffer_size) /* end of block, not really printing */
+                {
+                        print(0, ' ');
+                }
+                else if(isprint(((char*)buffer)[j])) /* printable char */
+                {
+                        print(0, 0xFF & ((char*) buffer)[j]);
+                }
+                else /* other char */
+                {
+                        print(0, '.');
+                }
+            }
+            print(0, '\n');
+        }
+    }
 }
 
 /**
