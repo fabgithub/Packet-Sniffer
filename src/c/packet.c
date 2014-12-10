@@ -82,6 +82,8 @@ void process_ip_header(unsigned char* buffer, int buffer_size)
             break;
 
         case 17: //UDP
+            process_udp_header(buffer, buffer_size, iphdrlen);
+
             break;
 
         default: //other protocols
@@ -119,4 +121,16 @@ void process_tcp_header(unsigned char* buffer, int buffer_size, unsigned short i
 
     //print the TCP header
     print_tcp_header(tcp);
+}
+
+/**
+ * Process a UDP header.
+ *
+ * @param buffer      Buffer which contains the packet data
+ * @param buffer_size Size of the buffer
+ * @param iphdrlen    Length of the IP Header.
+ */
+void process_udp_header(unsigned char* buffer, int buffer_size, unsigned short iphdrlen)
+{
+
 }
