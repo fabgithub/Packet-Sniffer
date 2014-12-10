@@ -32,7 +32,7 @@ void process_ethernet_header(unsigned char* buffer, int buffer_size)
     print_ethernet_header(eth);
 
     //check the embedded protocol in the ethernet header and process accordingly
-    switch(eth->h_proto)
+    switch(ntohs(eth->h_proto))
     {
         case ETHERTYPE_IP: //IP
             process_ip_header(buffer, buffer_size);
