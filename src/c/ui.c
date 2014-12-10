@@ -43,8 +43,8 @@ void print_ethernet_header(struct ethhdr *eth)
 {
     print(0, "%s\n", "+--------< Ethernet Header");
     print(0, "|\n");
-    print(0, "| Destination Address  : %u\n", eth->h_dest);
-    print(0, "| Source Address       : %u\n", eth->h_source);
+    print(0, "| Destination Address  : %.2X-%.2X-%.2X-%.2X-%.2X-%.2X\n", eth->h_dest[0] , eth->h_dest[1] , eth->h_dest[2] , eth->h_dest[3] , eth->h_dest[4] , eth->h_dest[5]);
+    print(0, "| Source Address       : %.2X-%.2X-%.2X-%.2X-%.2X-%.2X\n", eth->h_source[0] , eth->h_source[1] , eth->h_source[2] , eth->h_source[3] , eth->h_source[4] , eth->h_source[5]);
     print(0, "| Protocol             : %u\n", eth->h_proto);
     print(0, "|\n");
     print(0, "%s\n", "+-------------------");
