@@ -105,3 +105,31 @@ void print_arp_header(struct arphdr_t *arp)
     print(0, "|\n");
     print(0, "%s\n", "+-------------------");
 }
+
+/**
+ * Prints a TCP header.
+ *
+ * @param tcp the TCP header struct
+ */
+void print_tcp_header(struct tcphdr *tcp)
+{
+    print(0, "%s\n", "+--------< TCP Header");
+    print(0, "|\n");
+    print(0, "| Source Port             : %u\n", ntohs(tcp->source));
+    print(0, "| Destination Port        : %u\n", ntohs(tcp->dest));
+    print(0, "| Sequence Number         : %x\n", tcp->seq);
+    print(0, "| Acknowledgement Number  : %x\n", tcp->ack_seq);
+    print(0, "| Header Length           : %d DWORDS or %d Bytes\n", (unsigned int) tcp->doff, (unsigned int)tcp->doff * 4);
+    print(0, "|\n");
+    print(0, "| Urgent Flag             : %d\n", (unsigned int) tcp->urg);
+    print(0, "| Acknowledgement Flag    : %d\n", (unsigned int) tcp->ack);
+    print(0, "| Push Flag               : %d\n", (unsigned int) tcp->psh);
+    print(0, "| Reset Flag              : %d\n", (unsigned int) tcp->rst);
+    print(0, "| Synchronize Flag        : %d\n", (unsigned int) tcp->syn);
+    print(0, "| Finish Flag             : %d\n", (unsigned int) tcp->fin);
+    print(0, "|\n");
+    print(0, "| Window                  : %d\n", ntohs(tcp->window));
+    print(0, "| Checksum                : %d\n", ntohs(tcp->check));
+    print(0, "| Urgent Pointer          : %d\n", ntohs(tcp->urg_ptr));
+    print(0, "|\n");
+}

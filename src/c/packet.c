@@ -116,4 +116,7 @@ void process_tcp_header(unsigned char* buffer, int buffer_size, unsigned short i
 {
     //Get the TCP header..leaving out Ethernet, IP header.
     struct tcphdr *tcp = (struct tcphdr *) (buffer + iphdrlen + sizeof(struct ethhdr));
+
+    //print the TCP header
+    print_tcp_header(tcp);
 }
