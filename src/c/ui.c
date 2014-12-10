@@ -39,7 +39,12 @@ void print(FILE *file, const char *format, ...)
  */
 void print_divider()
 {
-    print(0, "\n\n%.*s\n\n", 40, "=");
+    char buffer[41];
+
+    memset(buffer, (int) '=', 40);
+    buffer[40]='\0';
+
+    printf("%s", buffer);
 }
 
 /**
