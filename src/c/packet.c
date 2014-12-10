@@ -46,6 +46,23 @@ void process_ip_packet(unsigned char* buffer, int buffer_size)
     //Get the IP header part of the packet, leaving out the ethernet header
     struct iphdr *iph = (struct iphdr *) (buffer + sizeof(struct ethhdr));
 
+    //print ip header
 
+
+    //check the protocol embedded in the packet and process accordingly.
+    switch(iph->protocol)
+    {
+        case 1: //ICMP
+            break;
+
+        case 6: //TCP
+            break;
+
+        case 17: //UDP
+            break;
+
+        default: //other protocols
+            break;
+    }
 
 }
