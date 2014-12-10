@@ -62,6 +62,7 @@ void print_ip_header(struct iphdr *ip)
     print(0, "| Header Checksum      : %d\n", ntohs(ip->check));
     print(0, "| Source Address       : %s\n", inet_ntoa(source.sin_addr));
     print(0, "| Destination Address  : %s\n", inet_ntoa(destination.sin_addr));
+    print(0, "%s\n", "+-------------------");
 
     free(source);
     free(destination);
