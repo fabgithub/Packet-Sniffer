@@ -26,7 +26,7 @@ void print(FILE *file, const char *format, ...)
     {
         va_copy(file_va, console_va);
 
-        vfprintf(file, file_va);
+        vfprintf(file, format, file_va);
 
         va_end(file_va);
     }
