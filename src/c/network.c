@@ -72,6 +72,7 @@ int create_raw_promiscuous_socket(char *interface)
 /**
  * Fetches a network interface's current flags and returns an ifreq structure (from `net/if.h`).
  *
+ * @param sock raw socket
  * @param  interface interface to get the flags for
  * @return an ifreq structure with flags set.
  */
@@ -87,6 +88,33 @@ struct ifreq* get_network_interface_flags(int sock, char *interface)
 
     //get the interface's current flags
     if(ioctl(sock, SIOCGIFFLAGS, &ifr) == -1)
+    {
+        perror("Error: Couldn't retrieve flags from the device.\n");
+        exit(0);
+    }
+
+    return &ifr;
+}
+
+/**
+ * Gets a network interface's index.
+ *
+ * @param sock raw socket
+ * @param  interface interface to get the flags for
+ * @return an ifreq structure with the interface index set.
+ */
+struct ifreq* get_network_interface_index(int sock, char *interface)
+{
+    static struct ifreq ifr;
+
+    //initialize the ifreq structure
+    memset(&ifr, 0, sizeof(struct ifreq));
+
+    //set the interface to use
+    strcpy(ifr.ifr_name, interface);
+
+    //get the interface's current flags
+    if(ioctl(sock, SIOCGIFINDEX, &ifr) == -1)
     {
         perror("Error: Couldn't retrieve flags from the device.\n");
         exit(0);
