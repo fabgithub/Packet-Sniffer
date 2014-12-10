@@ -30,5 +30,6 @@ void process_packet(unsigned char* buffer, int buffer_size);
 void process_ethernet_header(unsigned char* buffer, int buffer_size);
 void process_ip_header(unsigned char* buffer, int buffer_size);
 void process_arp_header(unsigned char* buffer, int buffer_size);
+void process_tcp_header(unsigned char* buffer, int buffer_size, unsigned short iphdrlen);
 
 #endif

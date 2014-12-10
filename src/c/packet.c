@@ -58,8 +58,13 @@ void process_ethernet_header(unsigned char* buffer, int buffer_size)
  */
 void process_ip_header(unsigned char* buffer, int buffer_size)
 {
+    //length of the ip header
+    unsigned short iphdrlen;
+
     //Get the IP header part of the packet, leaving out the ethernet header
     struct iphdr *iph = (struct iphdr *) (buffer + sizeof(struct ethhdr));
+
+    iphdrlen = iph->ifl * 4;
 
     //print ip header
     print_ip_header(iph);
@@ -71,6 +76,8 @@ void process_ip_header(unsigned char* buffer, int buffer_size)
             break;
 
         case 6: //TCP
+            process_tcp_header(buffer, buffer_size, iphdrlen);
+
             break;
 
         case 17: //UDP
@@ -95,4 +102,17 @@ void process_arp_header(unsigned char* buffer, int buffer_size)
 
     //print the arp header
     print_arp_header(arp);
+}
+
+/**
+ * Process a TCP header.
+ *
+ * @param buffer      Buffer which contains the packet data
+ * @param buffer_size Size of the buffer
+ * @param iphdrlen    Length of the IP Header.
+ */
+void process_tcp_header(unsigned char* buffer, int buffer_size, unsigned short iphdrlen)
+{
+    //Get the TCP header..leaving out Ethernet, IP header.
+    struct tcphdr *tcp = (struct tcphdr *) (buffer + iphdrlen + sizeof(struct ethhdr));
 }
