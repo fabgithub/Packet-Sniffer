@@ -132,5 +132,9 @@ void process_tcp_header(unsigned char* buffer, int buffer_size, unsigned short i
  */
 void process_udp_header(unsigned char* buffer, int buffer_size, unsigned short iphdrlen)
 {
+    //Get the UDP header..leaving out Ethernet, IP header.
+    struct udphdr *udp = (struct udphdr*) (buffer + iphdrlen  + sizeof(struct ethhdr));
 
+    //print the UDP header
+    print_udp_header(udp);
 }
