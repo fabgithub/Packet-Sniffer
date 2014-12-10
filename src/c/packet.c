@@ -33,3 +33,18 @@ void process_packet(unsigned char* buffer, int buffer_size)
 
     //print all stats here.
 }
+
+/**
+ * Process an IP packet.
+ *
+ * @param buffer      Buffer which contains packet data
+ * @param buffer_size Size of the buffer
+ */
+void process_ip_packet(unsigned char* buffer, int buffer_size)
+{
+    //Get the IP header part of the packet, leaving out the ethernet header
+    struct iphdr *iph = (struct iphdr *) (buffer + sizeof(struct ethhdr));
+
+
+
+}
