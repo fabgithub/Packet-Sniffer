@@ -14,6 +14,7 @@ void process_packet(unsigned char* buffer, int buffer_size)
     //process link layer and see what protocol is being used.
     struct ethhdr *eth = (struct ethhdr *) buffer;
 
+    //check the embedded protocol in the ethernet header and process accordingly
     switch(eth->h_proto)
     {
         case ETHERTYPE_IP: //IP
