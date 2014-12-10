@@ -90,9 +90,20 @@ void print_ip_header(struct iphdr *ip)
  */
 void print_arp_header(struct arphdr_t *arp)
 {
+    //print counter
+    int i = 0;
+
     print(0, "%s\n", "+--------< ARP Header");
     print(0, "|\n");
-    print(0, "| Hardware Type        : %d\n", ntohs(arp->htype));
-    print(0, "| Protocol Type        : %d\n", ntohs(arp->ptype));
+    print(0, "| Hardware Type                   : %d\n", ntohs(arp->htype));
+    print(0, "| Protocol Type                   : %d\n", ntohs(arp->ptype));
+    print(0, "| Hardware Address Length         : %u\n", arp->hlen);
+    print(0, "| Protocol Address Length         : %u\n", arp->plen);
+    print(0, "| Operation                       : %d - %s\n", ntohs(arp->oper), (ntohs(arp->oper) == ARP_REQUEST) ? "ARP Request" : "ARP Reply");
+    print(0, "| Sender Hardware Address (MAC)   : %.2X-%.2X-%.2X-%.2X-%.2X-%.2X\n", arp->sha[0], arp->sha[1], arp->sha[2], arp->sha[3], arp->sha[4], arp->sha[5]);
+    print(0, "| Sender IP Address               : %d.%d.%d.%d\n", arp->sip[0], arp->sip[1], arp->sip[2], arp->sip[3]);
+    print(0, "| Target Hardware Address (MAC)   : %.2X-%.2X-%.2X-%.2X-%.2X-%.2X\n", arp->tha[0], arp->tha[1], arp->tha[2], arp->tha[3], arp->tha[4], arp->tha[5]);
+    print(0, "| Target IP Address               : %d.%d.%d.%d\n", arp->tip[0], arp->tip[1], arp->tip[2], arp->tip[3]);
+
     print(0, "%s\n", "+-------------------");
 }

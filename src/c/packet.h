@@ -4,6 +4,9 @@
 #include "includes.h"
 #include "ui.h"
 
+#define ARP_REQUEST 1   /* ARP Request */
+#define ARP_REPLY   2   /* ARP Reply   */
+
 /**
  * ARP Header.
  *
