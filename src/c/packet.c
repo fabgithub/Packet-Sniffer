@@ -12,6 +12,19 @@
 void process_packet(unsigned char* buffer, int buffer_size)
 {
     //process link layer and see what protocol is being used.
+    process_ethernet_header(buffer, buffer_size);
+
+    //print all stats here.
+}
+
+/**
+ * Process an Ethernet header.
+ *
+ * @param buffer      Buffer which contains packet data
+ * @param buffer_size Size of the buffer
+ */
+void process_ethernet_header(unsigned char* buffer, int buffer_size)
+{
     struct ethhdr *eth = (struct ethhdr *) buffer;
 
     //check the embedded protocol in the ethernet header and process accordingly
@@ -31,19 +44,6 @@ void process_packet(unsigned char* buffer, int buffer_size)
 
             break;
     }
-
-    //print all stats here.
-}
-
-/**
- * Process an Ethernet header.
- *
- * @param buffer      Buffer which contains packet data
- * @param buffer_size Size of the buffer
- */
-void process_ethernet_header(unsigned char* buffer, int buffer_size)
-{
-
 }
 
 /**
