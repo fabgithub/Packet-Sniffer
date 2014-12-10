@@ -2,6 +2,7 @@
  * This file includes all packet processing related functions.
  */
 #include "packet.h"
+#include "ui.h"
 
 /**
  * Process a packet received.
