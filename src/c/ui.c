@@ -133,3 +133,19 @@ void print_tcp_header(struct tcphdr *tcp)
     print(0, "| Urgent Pointer          : %d\n", ntohs(tcp->urg_ptr));
     print(0, "|\n");
 }
+
+/**
+ * Prints a UDP header.
+ *
+ * @param udp the UDP header struct
+ */
+void print_udp_header(struct udphdr *udp)
+{
+    print(0, "%s\n", "+--------< UDP Header");
+    print(0, "|\n");
+    print(0, "| Source Port          : %d\n", ntohs(udp->source));
+    print(0, "| Destination Port     : %d\n", ntohs(udp->dest));
+    print(0, "| Length               : %d\n", ntohs(udp->len));
+    print(0, "| Checksum             : %d\n", ntohs(udp->check));
+    print(0, "|\n");
+}
