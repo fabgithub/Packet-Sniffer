@@ -16,18 +16,20 @@ void print(FILE *file, const char *format, ...)
 {
     va_list file_va, console_va;
 
-    va_start(file_va, format);
-    va_copy(console_va, file_va);
-
-    //if the pointer to the file object isn't null
-    if(file)
-    {
-        vfprintf(file, file_va);
-    }
+    va_start(console_va, format);
 
     //print to console
     vprintf(format, console_va);
 
+    //if the pointer to the file object isn't null
+    if(file)
+    {
+        va_copy(file_va, console_va);
+
+        vfprintf(file, file_va);
+
+        va_end(file_va);
+    }
+
     va_end(console_va);
-    va_end(file_va);
 }
