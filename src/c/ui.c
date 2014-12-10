@@ -79,18 +79,18 @@ void print_packet_data(unsigned char* buffer, int buffer_size)
             {
                 if(j >= buffer_size) /* end of block, not really printing */
                 {
-                    print(0, ' ');
+                    print(0, " ");
                 }
                 else if( isprint(((char*) buffer)[j]) ) /* printable char */
                 {
-                    print(0, 0xFF & ((char*) buffer)[j]);
+                    print(0, "%c", 0xFF & ((char*) buffer)[j]);
                 }
                 else /* other char */
                 {
-                    print(0, '.');
+                    print(0, ".");
                 }
             }
-            print(0, '\n');
+            print(0, "\n");
         }
     }
 }
