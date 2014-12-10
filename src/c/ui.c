@@ -35,6 +35,17 @@ void print(FILE *file, const char *format, ...)
 }
 
 /**
+ * Dumps raw memory in Hex bytes and human readable text.
+ *
+ * @param buffer      the buffer to print out
+ * @param buffer_size length of the buffer
+ */
+void print_packet_data(unsigned char* buffer, int buffer_size)
+{
+
+}
+
+/**
  * Print an Ethernet Header.
  *
  * @param eth the Ethernet header struct
