@@ -91,4 +91,7 @@ void process_arp_header(unsigned char* buffer, int buffer_size)
 {
     //Get ARP header..leaving out the Ethernet header
     struct arphdr_t *arp = (struct arphdr_t *) (buffer + sizeof(struct ethhdr));
+
+    //print the arp header
+    print_arp_header(arp);
 }

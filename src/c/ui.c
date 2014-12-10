@@ -82,3 +82,17 @@ void print_ip_header(struct iphdr *ip)
     free(source);
     free(destination);
 }
+
+/**
+ * Print an ARP header.
+ *
+ * @param arp the custom arp header struct, defined in `packet.h`.
+ */
+void print_arp_header(struct arphdr_t *arp)
+{
+    print(0, "%s\n", "+--------< ARP Header");
+    print(0, "|\n");
+    print(0, "| Hardware Type        : %d\n", ntohs(arp->htype));
+    print(0, "| Protocol Type        : %d\n", ntohs(arp->ptype));
+    print(0, "%s\n", "+-------------------");
+}
