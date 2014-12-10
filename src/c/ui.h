@@ -2,6 +2,7 @@
 #define UI_H
 
 #include "includes.h"
+#include "packet.h"
 
 void print_welcome_message();
 void print(FILE *file, const char *format, ...);
