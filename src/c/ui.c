@@ -92,9 +92,6 @@ void print_ip_header(struct iphdr *ip)
  */
 void print_arp_header(struct arphdr_t *arp)
 {
-    //print counter
-    int i = 0;
-
     print(0, "%s\n", "+--------< ARP Header");
     print(0, "|\n");
     print(0, "| Hardware Type                   : %d\n", ntohs(arp->htype));
