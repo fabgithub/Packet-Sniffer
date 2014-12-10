@@ -33,3 +33,13 @@ void print(FILE *file, const char *format, ...)
 
     va_end(console_va);
 }
+
+/**
+ * Print an IP Header.
+ *
+ * @param iph the IP header struct
+ */
+void print_ip_header(struct iphdr *iph)
+{
+
+}

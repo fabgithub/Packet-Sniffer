@@ -5,5 +5,6 @@
 
 void print_welcome_message();
 void print(FILE *file, const char *format, ...);
+void print_ip_header(struct iphdr *iph);
 
 #endif

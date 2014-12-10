@@ -18,12 +18,12 @@ void process_packet(unsigned char* buffer, int buffer_size)
     switch(eth->h_proto)
     {
         case ETHERTYPE_IP: //IP
-            process_ip_packet(buffer, buffer_size);
+            process_ip_header(buffer, buffer_size);
 
             break;
 
         case ETHERTYPE_ARP: //ARP
-            process_arp_packet(buffer, buffer_size);
+            process_arp_header(buffer, buffer_size);
 
             break;
 
@@ -41,13 +41,13 @@ void process_packet(unsigned char* buffer, int buffer_size)
  * @param buffer      Buffer which contains packet data
  * @param buffer_size Size of the buffer
  */
-void process_ip_packet(unsigned char* buffer, int buffer_size)
+void process_ip_header(unsigned char* buffer, int buffer_size)
 {
     //Get the IP header part of the packet, leaving out the ethernet header
     struct iphdr *iph = (struct iphdr *) (buffer + sizeof(struct ethhdr));
 
     //print ip header
-
+    print_ip_header(iph);
 
     //check the protocol embedded in the packet and process accordingly.
     switch(iph->protocol)
