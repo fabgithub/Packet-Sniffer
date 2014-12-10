@@ -1,4 +1,4 @@
-#include "ui.c"
+#include "ui.h"
 
 void print_welcome_message()
 {
