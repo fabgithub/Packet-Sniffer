@@ -81,7 +81,7 @@ void print_packet_data(unsigned char* buffer, int buffer_size)
                 {
                     print(0, ' ');
                 }
-                else if(isprint(((char*)buffer)[j])) /* printable char */
+                else if( isprint(((char*) buffer)[j]) ) /* printable char */
                 {
                     print(0, 0xFF & ((char*) buffer)[j]);
                 }
