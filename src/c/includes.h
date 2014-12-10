@@ -2,6 +2,7 @@
 #define INCLUDES_H
 
 #include <stdio.h> //for printf(), perror()
+#include <stdarg.h> //for va_list and va_start
 #include <signal.h> //for signal()
 #include <stdlib.h> //malloc
 #include <string.h> //memset
