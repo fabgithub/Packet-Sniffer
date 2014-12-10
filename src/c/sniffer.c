@@ -21,7 +21,9 @@
 
 /* Interfaces */
 void on_exit_cleanup();
+void process_signal();
 
+int loop; //switch for the main loop
 int socket; //the descriptor of the raw socket in use
 char interface[16]; //name of the interface in use
 
@@ -40,6 +42,9 @@ int main(int argc, char **argv)
     //buffer to scan into
     unsigned char *buffer = (unsigned char *) malloc(65536);
 
+    //we want to loop
+    loop = 1;
+
     //print all available network interfaces
     printf("%s\n\n", "The available network interfaces on your machine are: ");
     print_network_interfaces();
@@ -50,13 +55,13 @@ int main(int argc, char **argv)
     socket = create_raw_promiscuous_socket(interface);
 
     //make sure 'promiscuous mode' will get disabled upon program termination
-    signal(SIGINT, on_exit_cleanup); //register signal handler for CTRL+C
-    atexit(on_exit_cleanup);
+    signal(SIGINT, process_signal); //register signal handler for CTRL+C
+    atexit(process_signal);
 
     printf("%s: %s ..\n", "Now monitoring all packets on the interface", interface);
 
-    //infinite loop to read
-    while(1)
+    //infinite loop to read - exits and does cleanup upon CTRL+C
+    while(loop)
     {
         data_size = recvfrom(socket, buffer, 65536, 0, NULL, NULL);
 
@@ -69,6 +74,9 @@ int main(int argc, char **argv)
         //process the packet in the received data
         process_packet(buffer, data_size);
     }
+
+    //we've exited the loop, do all cleanup and exit
+    on_exit_cleanup();
 }
 
 /**
@@ -83,4 +91,13 @@ void on_exit_cleanup()
 
     //close the raw socket
     close(socket);
+}
+
+/**
+ * Process signals that are registered with `signal()`.
+ */
+void process_signal()
+{
+    //only have SIGINT for now.
+    loop = 0;
 }
