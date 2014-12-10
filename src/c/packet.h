@@ -11,16 +11,16 @@
  * it doesn't have addresses.
  */
 struct arphdr_t {
-    u_int16_t   htype;          /* Hardware Type           */
-    u_int16_t   ptype;          /* Protocol Type           */
-    u_char      hlen;           /* Hardware Address Length */
-    u_char      plen;           /* Protocol Address Length */
-    u_int16_t   oper;           /* Operation Code          */
-    u_char      sha[ETH_ALEN];  /* Sender hardware address */
-    u_char      sip[4];         /* Sender IP address       */
-    u_char      tha[ETH_ALEN];  /* Target hardware address */
-    u_char      tip[4];         /* Target IP address       */
-    char        padding[18];    /* Padding                 */
+    unsigned short int   htype;          /* Hardware Type           */
+    unsigned short int   ptype;          /* Protocol Type           */
+    unsigned char        hlen;           /* Hardware Address Length */
+    unsigned char        plen;           /* Protocol Address Length */
+    unsigned short int   oper;           /* Operation Code          */
+    unsigned char        sha[ETH_ALEN];  /* Sender hardware address */
+    unsigned char        sip[4];         /* Sender IP address       */
+    unsigned char        tha[ETH_ALEN];  /* Target hardware address */
+    unsigned char        tip[4];         /* Target IP address       */
+    char                 padding[18];    /* Padding                 */
 };
 
 //Interfaces
