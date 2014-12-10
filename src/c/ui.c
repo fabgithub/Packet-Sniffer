@@ -46,6 +46,7 @@ void print_ethernet_header(struct ethhdr *eth)
     print(0, "| Destination Address  : %u\n", eth->h_dest);
     print(0, "| Source Address       : %u\n", eth->h_source);
     print(0, "| Protocol             : %u\n", eth->h_proto);
+    print(0, "|\n");
     print(0, "%s\n", "+-------------------");
 }
 
@@ -77,6 +78,7 @@ void print_ip_header(struct iphdr *ip)
     print(0, "| Header Checksum      : %d\n", ntohs(ip->check));
     print(0, "| Source Address       : %s\n", inet_ntoa(source.sin_addr));
     print(0, "| Destination Address  : %s\n", inet_ntoa(destination.sin_addr));
+    print(0, "|\n");
     print(0, "%s\n", "+-------------------");
 
     free(source);
@@ -104,6 +106,6 @@ void print_arp_header(struct arphdr_t *arp)
     print(0, "| Sender IP Address               : %d.%d.%d.%d\n", arp->sip[0], arp->sip[1], arp->sip[2], arp->sip[3]);
     print(0, "| Target Hardware Address (MAC)   : %.2X-%.2X-%.2X-%.2X-%.2X-%.2X\n", arp->tha[0], arp->tha[1], arp->tha[2], arp->tha[3], arp->tha[4], arp->tha[5]);
     print(0, "| Target IP Address               : %d.%d.%d.%d\n", arp->tip[0], arp->tip[1], arp->tip[2], arp->tip[3]);
-
+    print(0, "|\n");
     print(0, "%s\n", "+-------------------");
 }
