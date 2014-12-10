@@ -80,3 +80,14 @@ void process_ip_header(unsigned char* buffer, int buffer_size)
     }
 
 }
+
+/**
+ * Process an ARP header.
+ *
+ * @param buffer      Buffer which contains the packet data
+ * @param buffer_size Size of the buffer
+ */
+void process_arp_header(unsigned char* buffer, int buffer_size)
+{
+
+}
