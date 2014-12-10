@@ -12,8 +12,8 @@
  */
 void process_packet(unsigned char* buffer, int buffer_size)
 {
-    //print packet divider
-    print(0, "%.*s\n", 40, "=");
+    //print the packet divider
+    print_divider();
 
     //process link layer and see what protocol is being used.
     process_ethernet_header(buffer, buffer_size);
@@ -23,8 +23,7 @@ void process_packet(unsigned char* buffer, int buffer_size)
 
     //print all stats here.
 
-    //print packet divider
-    print(0, "%.*s\n", 40, "=");
+    print_divider();
 }
 
 /**

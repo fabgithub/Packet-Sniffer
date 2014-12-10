@@ -35,6 +35,14 @@ void print(FILE *file, const char *format, ...)
 }
 
 /**
+ * A simple-stupid function to print a divider.
+ */
+void print_divider()
+{
+    print(0, "\n\n%.*s\n\n", 40, "=");
+}
+
+/**
  * Dumps raw memory in Hex bytes and human readable text.
  *
  * Function borrowed from http://grapsus.net/blog/post/Hexadecimal-dump-in-C
