@@ -36,7 +36,18 @@ void process_packet(unsigned char* buffer, int buffer_size)
 }
 
 /**
- * Process an IP packet.
+ * Process an Ethernet header.
+ *
+ * @param buffer      Buffer which contains packet data
+ * @param buffer_size Size of the buffer
+ */
+void process_ethernet_header(unsigned char* buffer, int buffer_size)
+{
+
+}
+
+/**
+ * Process an IP header.
  *
  * @param buffer      Buffer which contains packet data
  * @param buffer_size Size of the buffer
