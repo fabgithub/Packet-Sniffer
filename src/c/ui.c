@@ -35,6 +35,21 @@ void print(FILE *file, const char *format, ...)
 }
 
 /**
+ * Print an Ethernet Header.
+ *
+ * @param eth the Ethernet header struct
+ */
+void print_ethernet_header(struct ethhdr *eth)
+{
+    print(0, "%s\n", "+--------< Ethernet Header");
+    print(0, "|\n");
+    print(0, "| Destination Address  : %u\n", eth->h_dest);
+    print(0, "| Source Address       : %u\n", eth->h_source);
+    print(0, "| Protocol             : %u\n", eth->h_proto);
+    print(0, "%s\n", "+-------------------");
+}
+
+/**
  * Print an IP Header.
  *
  * @param iph the IP header struct

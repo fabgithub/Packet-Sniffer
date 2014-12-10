@@ -27,6 +27,9 @@ void process_ethernet_header(unsigned char* buffer, int buffer_size)
 {
     struct ethhdr *eth = (struct ethhdr *) buffer;
 
+    //print ip header
+    print_ethernet_header(eth);
+
     //check the embedded protocol in the ethernet header and process accordingly
     switch(eth->h_proto)
     {
