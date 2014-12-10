@@ -24,7 +24,7 @@ void on_exit_cleanup();
 void process_signal();
 
 int loop; //switch for the main loop
-int socket; //the descriptor of the raw socket in use
+int raw_socket; //the descriptor of the raw socket in use
 char interface[16]; //name of the interface in use
 
 /**
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
     scanf("%s", interface); //assign the global interface
 
     //get a raw socket in a promiscuous mode
-    socket = create_raw_promiscuous_socket(interface);
+    raw_socket = create_raw_promiscuous_socket(interface);
 
     //make sure 'promiscuous mode' will get disabled upon program termination
     signal(SIGINT, process_signal); //register signal handler for CTRL+C
@@ -63,7 +63,7 @@ int main(int argc, char **argv)
     //infinite loop to read - exits and does cleanup upon CTRL+C
     while(loop)
     {
-        data_size = recvfrom(socket, buffer, 65536, 0, NULL, NULL);
+        data_size = recvfrom(raw_socket, buffer, 65536, 0, NULL, NULL);
 
         if(data_size < 0)
         {
@@ -87,10 +87,10 @@ int main(int argc, char **argv)
 void on_exit_cleanup()
 {
     //turn off the interface's promiscuous mode
-    unset_promiscuous_mode(socket, interface);
+    unset_promiscuous_mode(raw_socket, interface);
 
     //close the raw socket
-    close(socket);
+    close(raw_socket);
 }
 
 /**
