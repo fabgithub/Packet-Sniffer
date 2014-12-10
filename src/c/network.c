@@ -142,8 +142,6 @@ void set_promiscuous_mode(int sock, char *interface)
         perror("Error: Couldn't set flag IFF_PROMISC.\n");
         exit(0);
     }
-
-    free(&ifr);
 }
 
 /**
@@ -165,6 +163,4 @@ void unset_promiscuous_mode(int sock, char *interface)
         perror("Error: Couldn't set flag IFF_PROMISC.\n");
         exit(0);
     }
-
-    free(&ifr);
 }
