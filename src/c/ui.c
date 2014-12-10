@@ -41,10 +41,10 @@ void print_divider()
 {
     char buffer[41];
 
-    memset(buffer, (int) '=', 40);
+    memset(buffer, (int) '-', 40);
     buffer[40]='\0';
 
-    printf("\n%s\n", buffer);
+    printf("\n+%s\n", buffer);
 }
 
 /**
@@ -59,12 +59,14 @@ void print_packet_data(unsigned char* buffer, int buffer_size)
 {
     unsigned int i, j;
 
+    print(0, "%s\n", "+--------< Hex Data");
+
     for(i = 0; i < buffer_size + ((buffer_size % HEXDUMP_COLUMNS) ? (HEXDUMP_COLUMNS - buffer_size % HEXDUMP_COLUMNS) : 0); i++)
     {
         /* print offset */
         if(i % HEXDUMP_COLUMNS == 0)
         {
-            print(0, "0x%06x: ", i);
+            print(0, "| 0x%06x: ", i);
         }
 
         /* print hex data */
@@ -98,6 +100,8 @@ void print_packet_data(unsigned char* buffer, int buffer_size)
             print(0, "\n");
         }
     }
+
+    print(0, "%s\n", "+----------------");
 }
 
 /**
@@ -113,7 +117,6 @@ void print_ethernet_header(struct ethhdr *eth)
     print(0, "| Source Address       : %.2X-%.2X-%.2X-%.2X-%.2X-%.2X\n", eth->h_source[0] , eth->h_source[1] , eth->h_source[2] , eth->h_source[3] , eth->h_source[4] , eth->h_source[5]);
     print(0, "| Protocol             : %u\n", eth->h_proto);
     print(0, "|\n");
-    print(0, "%s\n", "+-------------------");
 }
 
 /**
@@ -145,7 +148,6 @@ void print_ip_header(struct iphdr *ip)
     print(0, "| Source Address       : %s\n", inet_ntoa(source.sin_addr));
     print(0, "| Destination Address  : %s\n", inet_ntoa(destination.sin_addr));
     print(0, "|\n");
-    print(0, "%s\n", "+-------------------");
 }
 
 /**
@@ -169,7 +171,6 @@ void print_arp_header(struct arphdr_t *arp)
     print(0, "|\n");
     print(0, "| Info                            : Who has %d.%d.%d.%d? Tell %d.%d.%d.%d\n", arp->tip[0], arp->tip[1], arp->tip[2], arp->tip[3], arp->sip[0], arp->sip[1], arp->sip[2], arp->sip[3]);
     print(0, "|\n");
-    print(0, "%s\n", "+-------------------");
 }
 
 /**

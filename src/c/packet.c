@@ -22,8 +22,7 @@ void process_packet(unsigned char* buffer, int buffer_size)
     print_packet_data(buffer, buffer_size);
 
     //print all stats here.
-
-    print_divider();
+    //
 }
 
 /**
