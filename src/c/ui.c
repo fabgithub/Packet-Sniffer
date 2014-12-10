@@ -44,7 +44,7 @@ void print_divider()
     memset(buffer, (int) '=', 40);
     buffer[40]='\0';
 
-    printf("%s", buffer);
+    printf("\n%s\n", buffer);
 }
 
 /**
