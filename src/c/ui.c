@@ -180,7 +180,256 @@ void print_arp_header(struct arphdr_t *arp)
  */
 void print_icmp_header(struct icmphdr *icmp)
 {
+    print(0, "%s\n", "+--------< ARP Header");
+    print(0, "|\n");
 
+    switch((unsigned int) icmp->type)
+    {
+        case 0:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Echo Reply");
+
+            print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+            break;
+        case 3:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Destination Unreachable");
+
+            switch((unsigned int) icmp->code)
+            {
+                case 0:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Net Unreachable");
+
+                    break;
+
+                case 1:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Host Unreachable");
+
+                    break;
+
+                case 2:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Protocol Unreachable");
+
+                    break;
+
+                case 3:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Port Unreachable");
+
+                    break;
+
+                case 4:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Fragmentation Needed & DF Set");
+
+                    break;
+
+                case 5:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Source Route Failed");
+
+                    break;
+
+                case 6:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Destination Network Unknown");
+
+                    break;
+
+                case 7:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Destination Host Unknown");
+
+                    break;
+
+                case 8:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Source Host Isolated");
+
+                    break;
+
+                case 9:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Network Administratively Prohibited");
+
+                    break;
+
+                case 10:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Host Administratively Prohibited");
+
+                    break;
+
+                case 11:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Network Unreachable for TOS");
+
+                    break;
+
+                case 12:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Host Unreachable for TOS");
+
+                    break;
+
+                case 13:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Communication Administratively Prohibited");
+
+                    break;
+
+                default:
+                    print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+                    break;
+            }
+
+            break;
+        case 4:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Source Quench");
+
+            print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+            break;
+        case 5:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Redirect");
+
+            switch((unsigned int) icmp->code)
+            {
+                case 0:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Redirect Datagram for the Network");
+
+                    break;
+
+                case 1:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Redirect Datagram for the Host");
+
+                    break;
+
+                case 2:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Redirect Datagram for the TOS & Network");
+
+                    break;
+
+                case 3:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Redirect Datagram for the TOS & Host");
+
+                    break;
+
+                default:
+                    print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+                    break;
+            }
+
+            break;
+        case 8:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Echo");
+
+            print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+            break;
+        case 9:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Router Advertisement");
+
+            print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+            break;
+        case 10:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Router Selection");
+
+            print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+            break;
+        case 11:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Time Exceeded");
+
+            switch((unsigned int) icmp->code)
+            {
+                case 0:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Time To Live exceeded in Transit");
+
+                    break;
+
+                case 1:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Fragment Reassembly Time Exceeded");
+
+                    break;
+
+                default:
+                    print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+                    break;
+            }
+
+            break;
+        case 12:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Parameter Problem");
+
+            switch((unsigned int) icmp->code)
+            {
+                case 0:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Pointer indicates the error");
+
+                    break;
+
+                case 1:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Missing a Required Option");
+
+                    break;
+
+                case 2:
+                    print(0, "| Code                    : %d - %s\n", (unsigned int) icmp->code, "Bad Length");
+
+                    break;
+
+                default:
+                    print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+                    break;
+            }
+
+            break;
+        case 13:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Timestamp");
+
+            print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+            break;
+        case 14:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Timestamp Reply");
+
+            print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+            break;
+        case 15:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Information Request");
+
+            print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+            break;
+        case 16:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Information Reply");
+
+            print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+            break;
+        case 17:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Address Mask Request");
+
+            print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+            break;
+        case 18:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Address Mask Reply");
+
+            print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+            break;
+        case 30:
+            print(0, "| Type                    : %d - %s\n", (unsigned int) icmp->type, "Traceroute");
+
+            print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+            break;
+        default:
+            print(0, "| Type                    : %d\n", (unsigned int) icmp->type);
+
+            print(0, "| Code                    : %d\n", (unsigned int) icmp->code);
+
+            break;
+    }
+
+    print(0, "| Checksum                : %d\n", (unsigned int) icmp->checksum);
+    print(0, "|\n");
 }
 
 /**
