@@ -125,7 +125,11 @@ void process_arp_header(unsigned char* buffer, int buffer_size)
  */
 void process_icmp_header(unsigned char* buffer, int buffer_size, unsigned short iphdrlen)
 {
+    //Get the TCP header..leaving out Ethernet, IP header.
+    struct icmphdr *icmp = (struct icmphdr *) (buffer + iphdrlen + sizeof(struct ethhdr));
 
+    //print the ICMP header
+    print_icmp_header(icmp);
 }
 
 
