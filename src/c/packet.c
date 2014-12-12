@@ -81,6 +81,8 @@ void process_ip_header(unsigned char* buffer, int buffer_size)
     switch(iph->protocol)
     {
         case 1: //ICMP
+            process_icmp_header(buffer, buffer_size, iphdrlen);
+
             break;
 
         case 6: //TCP
@@ -113,6 +115,19 @@ void process_arp_header(unsigned char* buffer, int buffer_size)
     //print the arp header
     print_arp_header(arp);
 }
+
+/**
+ * Process an ICMP header.
+ *
+ * @param buffer      Buffer which contains the packet data
+ * @param buffer_size Size of the buffer
+ * @param iphdrlen    Length of the IP Header.
+ */
+void process_icmp_header(unsigned char* buffer, int buffer_size, unsigned short iphdrlen)
+{
+
+}
+
 
 /**
  * Process a TCP header.
