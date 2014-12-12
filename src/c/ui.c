@@ -174,6 +174,16 @@ void print_arp_header(struct arphdr_t *arp)
 }
 
 /**
+ * Prints an ICMP header.
+ *
+ * @param icmp the ICMP header struct
+ */
+void print_icmp_header(struct icmphdr *icmp)
+{
+
+}
+
+/**
  * Prints a TCP header.
  *
  * @param tcp the TCP header struct

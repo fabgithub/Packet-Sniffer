@@ -13,6 +13,7 @@ void print_packet_data(unsigned char* buffer, int buffer_size);
 void print_ethernet_header(struct ethhdr *eth);
 void print_ip_header(struct iphdr *ip);
 void print_arp_header(struct arphdr_t *arp);
+void print_icmp_header(struct icmphdr *icmp);
 void print_tcp_header(struct tcphdr *tcp);
 void print_udp_header(struct udphdr *udp);
 
