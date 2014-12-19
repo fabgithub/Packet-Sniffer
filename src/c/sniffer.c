@@ -26,7 +26,7 @@ void process_signal();
 int loop; //switch for the main loop
 int raw_socket; //the descriptor of the raw socket in use
 char interface[16]; //name of the interface in use
-char promiscuous[1]; //if the socket is running in promiscuous mode or not
+char promiscuous; //if the socket is running in promiscuous mode or not
 
 /**
  * The main entry point of the packet sniffer.
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
     scanf("%s", interface); //assign the global interface
 
     printf("\n\n%s:\t", "Do you want to scan in promiscuous mode? (Y or N)");
-    scanf("%s", promiscuous);
+    promiscuous = getchar();
 
     if(toupper(promiscuous) == 'Y')
     {
@@ -89,6 +89,8 @@ int main(int argc, char **argv)
 
     //we've exited the loop, do all cleanup and exit
     on_exit_cleanup();
+
+    return 0;
 }
 
 /**

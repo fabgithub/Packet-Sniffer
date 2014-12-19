@@ -1,0 +1,4 @@
+psniffer
+*.out
+*.o
+*~
