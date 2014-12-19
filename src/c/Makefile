@@ -17,4 +17,4 @@ psniffer: sniffer.c ui.c network.c packet.c
 # files and *~ backup files:
 #
 clean:
-	$(RM) psniffer *.o *~
+	$(RM) psniffer *.o *~ a.out

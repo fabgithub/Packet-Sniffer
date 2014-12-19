@@ -5,6 +5,7 @@
 #include <stdarg.h> //for va_list and va_start
 #include <signal.h> //for signal()
 #include <stdlib.h> //malloc
+#include <ctype.h> //for toupper()
 #include <string.h> //memset
 #include <netinet/ip.h> //IP header
 #include <netinet/tcp.h> //TCP header
@@ -17,5 +18,6 @@
 #include <sys/ioctl.h> //for ioctl()
 #include <net/if.h> //for interface flags, look at `man netdevice(7)` for more.
 #include <ifaddrs.h> //getting network interfaces
+#include <unistd.h> //close()
 
 #endif
